@@ -8,6 +8,9 @@ All notable changes to this project are documented in this file.
 - Added Sparkle-backed automatic update installation from GitHub Releases, including Sparkle's changelog/install UI and a developer dry-run mode for previewing the latest release update flow.
 - Added Razer Naga Pro support over USB (wired and 2.4GHz dongle) and Bluetooth: button remapping across all three swappable side panels (2-button, 6-button, 12-button), grouped clearly in the button mapping table; DPI stages; and full onboard-profile switching/CRUD. Known limitation: onboard profile names for non-active slots can fail to load over Bluetooth due to a pre-existing multi-fragment BLE response reassembly issue that also affects other Bluetooth devices.
 
+### Fixed
+- Fixed a Bluetooth vendor-transport bug where multi-fragment responses (e.g. onboard profile metadata, which can span 5+ notify packets) could be truncated if the peripheral hadn't finished streaming before a fixed completion timer fired. The timer now resets on every notification instead of only after the last write.
+
 ## [1.2.2]
 
 ### Fixed
